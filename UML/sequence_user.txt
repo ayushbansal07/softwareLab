@@ -1,0 +1,43 @@
+@startuml
+actor user
+activate user 
+	user -> server : login()
+	activate server
+		server --> user : session
+	deactivate server
+
+	user -> server : query
+	activate server
+		server -> database : get details()
+		activate database
+			database --> server : give details()
+		deactivate database
+		server --> user : query result()
+	deactivate server
+	
+	user -> server : modify user details
+	activate server
+		server -> database : update()
+		activate database
+			database -> database : updating()
+			activate database	
+			deactivate database
+		database --> server : update status
+		deactivate database
+	server --> user : update status
+	deactivate server
+
+	user -> server : give test()
+	activate server
+		server -> database : submit response
+		activate database
+			database-> database : save response
+			activate database
+			deactivate database
+			database --> server : give statistics()
+		deactivate database
+		server --> user : result
+	deactivate server
+
+deactivate user
+@enduml

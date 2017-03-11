@@ -1,0 +1,56 @@
+@startuml
+actor admin
+activate admin
+	admin -> server : login
+	activate server
+		server --> admin : session
+	deactivate server
+
+	admin -> server : query
+	activate server
+		server -> database : get details()
+		activate database
+			database --> server : give details()
+		deactivate database
+		server --> admin : query result()
+	deactivate server
+
+	admin -> server : modify admin details
+	activate server
+		server -> database : update()
+		activate database
+			database -> database : updating()
+			activate database	
+			deactivate database
+		database --> server : update status
+		deactivate database
+	server --> admin : update status
+	deactivate server
+
+	admin -> subject : select subject()
+	activate subject
+		subject --> admin : subject data
+	deactivate subject
+
+	admin -> subject : modify question()
+	activate subject
+		subject -> subject : update question()
+		activate subject
+		deactivate subject
+	subject --> admin : update status
+	deactivate subject
+
+	admin -> server : modify subject details
+	activate server
+		server -> database : update()
+		activate database
+			database -> database : updating()
+			activate database	
+			deactivate database
+		database --> server : update status
+		deactivate database
+	server --> admin : update status
+	deactivate server
+
+deactivate admin
+@enduml

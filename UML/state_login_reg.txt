@@ -1,0 +1,26 @@
+@startuml
+left to right direction
+[*] --> Selection
+Selection : do/login or register
+Selection --> Register : [register]
+Selection --> Login : [login]
+
+Register : do/get details
+Register --> CheckDetails
+CheckDetails : do/check for valid details
+CheckDetails --> Register : [invalid details]
+CheckDetails --> Registered : [valid details]
+Registered --> [*]
+
+Login : do/get username and password
+Login --> Authentication
+Authentication --> Login : [invalid details]
+Authentication --> Session : [valid details]
+
+Session --> [*]
+
+Register --> [*] : [exit]
+Login --> [*] : [exit]
+
+
+@enduml

@@ -1,0 +1,14 @@
+@startuml
+left to right direction
+[*] --> UserSession
+UserSession : do/get user choice
+UserSession --> [*] : [exit]
+UserSession --> Redirect : [get query]
+Redirect : do/redirect user according to choice
+Redirect --> ViewInformation
+Redirect --> ModifyInformation
+Redirect --> GiveTest
+ViewInformation --> UserSession
+ModifyInformation --> UserSession
+GiveTest --> UserSession
+@enduml

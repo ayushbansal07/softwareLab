@@ -1,0 +1,23 @@
+@startuml
+left to right direction
+[*] --> AdminSession
+AdminSession --> [*] : [exit]
+AdminSession : do/get admin choice
+AdminSession --> Redirect : [get query]
+Redirect : do/redirect user according to choice
+Redirect --> ViewInformation
+Redirect --> ModifyInformation
+Redirect --> Subjects
+Subjects : do/Slect Subject
+Subjects --> Subjects : [selected subject]
+Subjects --> ChangeSubjectDetails
+Subjects --> ModifyQuestion
+
+Redirect --> ModifySubjectDetails
+
+ViewInformation --> AdminSession
+ModifyInformation --> AdminSession
+ModifySubjectDetails --> AdminSession
+ChangeSubjectDetails --> AdminSession
+ModifyQuestion --> AdminSession
+@enduml

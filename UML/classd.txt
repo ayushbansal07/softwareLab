@@ -1,0 +1,65 @@
+@startuml
+left to right direction
+skinparam classAttributeIconSize 0
+class user{
+	+name : String
+	#roll no : String
+	#email address : String
+	-contact number : String
+	-password : String
+	-ssn : int
+	register()
+	login()
+	give test()
+	view info()
+	view subjects()
+}
+
+class Admin{
+	+name : String
+	#email address : String
+	-password : String
+	-ssn : int
+	register()
+	login()
+	view info()
+	view subjects()
+	edit subject()
+}
+
+class Subjects{
+	+Name : String
+	+Subject Code : String
+	#Statistics
+}
+
+class Questions{
+	-problem : String
+	-answer : String
+	#marks : int
+}
+
+class login{
+	-ssn id : int
+	login()
+	register()
+}
+
+class user_login{
+	-user id : String
+}
+
+class admin_login{
+	-admin id : String
+}
+
+user "associated" -- "*" Subjects 
+Admin "associated" -- "*" Subjects
+Questions "*" --* "1" Subjects
+Admin "associated" -- "*" Questions
+login <|-- user_login
+login <|-- admin_login
+
+user_login "1" -- "*" user
+admin_login "1" -- "*" Admin
+@enduml

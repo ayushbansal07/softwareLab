@@ -1,0 +1,39 @@
+@startuml
+left to right direction
+skinparam packagestyle rectangle
+actor Admin
+actor user
+rectangle {
+	Admin -- (admin login)
+	Admin -- (Register)
+	(admin login) --> (admin session) : <<include>>
+	(admin session) --> (Info) : <<include>>
+		(Info) <|-- (View Info)
+		(Info) <|-- (Modify)
+	(admin session) --> (Subjects) : <<include>>
+		(Subjects) <|-- (View Subjects)
+		(Subjects) <|-- (Modify Subject)
+		(Questions) <-- (Subjects) : <<include>>
+			(View Questions) --|> (Questions)
+			(Delete Qustions) --|> (Questions)
+			(Modify Question) --|> (Questions)
+			(Add Question) --|> (Questions)
+	(admin session) --> (Statistics) : <<include>>
+		(View Stats) --|> (Statistics)
+		(Delete) --|> (Statistics)
+	(Inavlid Password) ..> (admin login) : <<extend>>
+
+
+	user -- (user login)
+	user -- (Register)
+	(user login) --> (user session) : <<include>>
+	(user session) --> (User Info) : <<include>>
+		(User Info) <|-- (View User Info)
+		(User Info) <|-- (Modify User Info)
+	(user session) --> (Subjects user) : <<inlude>>
+		(Subjects user) <|-- (View Subject)
+		(Subjects user) --> (Give Test) : <<include>>
+	(Inavlid Password) ..> (user login) : <<extend>>
+
+}
+@enduml
