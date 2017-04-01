@@ -1,0 +1,55 @@
+#Run the Application using Details.java file
+
+##Structure of the Application:
+#Classes Used
+Details
+QuestionPane
+ConfirmationClass
+ScoreCard
+
+##Details
+#Contins the following:
+A field to enter name of student.
+A field to enter Email-Id of student.
+A button to Start Test.
+#Handles te following:
+Checks whether name field is empty or not. Display a message if field is empty.
+Checks whether the Email-Id Follows a Regualr Expression for Valid Email-Id. Displays a message if Invalid Email-Id. 
+Regular Expression used "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$".
+
+##QuestionPane
+#Contains the following
+A JLabel to display The name of the user as "Welcome <user's name>!".
+A JLabel to display the time left. Updated after every second.
+A side JPane contains Buttons for Every Question. On clicking the Buttons it takes the Question as mentioned by the Button. Created Dynamically by the code so that the number of Buttons is same as the number of Questions.
+A JLabel to Display Question Number.
+A JTextArea to display Question. Wrap Text by words enabled. Vertical Scrolling enabled.
+4 JRadioButtons for 4 Options. Only 1 of them clickable at a time.
+JButtons for Previous and Next Questions. 
+JButton for Deselecting the option selected.
+JButton for Submitting the test.
+#Handles the following:
+On Clicking Next, Previous or Submit,11 Response is saved automatically.
+When the time ends, Test submits automatically.
+
+##Confirmation Class
+Contains a prompt to Confirm whether to submit the test or not.
+
+##ScoreCard
+Displays number of Correct and InCorrect Responses of the test.
+=========================================================================================================
+SNo.			Input					Expected Output		Actual Output
+=========================================================================================================
+1.	Name = ""						Inavid Name		Invalid Name.
+2. 	Name = "abc def", Email Id = ""				Inavlid Email-Id	Inavlid Email-Id.
+3. 	Name = "def ghj", Email Id = "abc"			Inavlid Email-Id	Inavlid Email-Id.
+4. 	Name = "def ghj", Email Id = "abc@"			Inavlid Email-Id	Inavlid Email-Id.
+5. 	Name = "def ghj", Email Id = "abc@d"			Inavlid Email-Id	Inavlid Email-Id.
+6. 	Name = "def ghj", Email Id = "abc@d."			Inavlid Email-Id	Inavlid Email-Id.
+7. 	Name = "def ghj", Email Id = "abc@d.c"			Inavlid Email-Id	Inavlid Email-Id.
+8. 	Name = "def ghj", Email Id = "abc@d.co"			Start Test		Start Test. 	#Requires atleast 2 charaacters after '.' .
+9.	Question 1 response A					Incorrect ans		Incorrect ans.
+10. 	Question 2 response B					Correct ans		Correct ans.
+11. 	Click No in ConfrmationClass				Return to QuestionPane	Return to QuestionPane.
+12. 	Click Yes in ConfirmationClass				Display ScoreCard	Display ScoreCard.
+13. 	Click Close in ScoreCard				Application Exits	Application Exits.
